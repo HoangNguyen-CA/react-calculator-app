@@ -32,7 +32,7 @@ const Keypad = ({
       <Key onClick={() => addToOperand(7)}>7</Key>
       <Key onClick={() => addToOperand(8)}>8</Key>
       <Key onClick={() => addToOperand(9)}>9</Key>
-      <Key keyType='secondary' onClick={deleteFromOperand}>
+      <Key $keyType='secondary' onClick={deleteFromOperand}>
         DEL
       </Key>
       <Key onClick={() => addToOperand(4)}>4</Key>
@@ -47,10 +47,10 @@ const Keypad = ({
       <Key onClick={() => addToOperand(0)}>0</Key>
       <Key onClick={() => addOperator(operators.divide)}>/</Key>
       <Key onClick={() => addOperator(operators.multiply)}>x</Key>
-      <Key span='2' keyType='secondary' onClick={reset}>
+      <Key $span='2' $keyType='secondary' onClick={reset}>
         RESET
       </Key>
-      <Key span='2' keyType='accent' onClick={calculate}>
+      <Key $span='2' $keyType='accent' onClick={calculate}>
         =
       </Key>
     </Container>

@@ -27,18 +27,21 @@ const accentStyles = css`
 
 const Key = styled.button.attrs((props) => ({
   type: 'button',
-  span: props.span || '1',
-  keyType: props.keyType || 'primary',
 }))`
   border: none;
   cursor: pointer;
-  grid-column-start: span ${(props) => props.span};
+  grid-column-start: span ${({ $span }) => $span};
   border-radius: ${({ theme }) => theme.radius.normal};
   padding: 0.4em;
   font-family: Spartan, sans-serif;
-  ${({ keyType }) => (keyType === 'primary' ? primaryStyles : '')}
-  ${({ keyType }) => (keyType === 'secondary' ? secondaryStyles : '')}
-      ${({ keyType }) => (keyType === 'accent' ? accentStyles : '')};
+  ${({ $keyType }) => ($keyType === 'primary' ? primaryStyles : '')}
+  ${({ $keyType }) => ($keyType === 'secondary' ? secondaryStyles : '')}
+      ${({ $keyType }) => ($keyType === 'accent' ? accentStyles : '')};
 `;
+
+Key.defaultProps = {
+  $span: 1,
+  $keyType: 'primary',
+};
 
 export default Key;

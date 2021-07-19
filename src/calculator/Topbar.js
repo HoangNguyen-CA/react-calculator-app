@@ -36,15 +36,12 @@ const Toggle = styled.div`
   border-radius: 100em;
 `;
 
-const ToggleButton = styled.button.attrs((props) => ({
-  type: 'button',
+const ToggleButton = styled.div.attrs((props) => ({
   n: props.n || '1',
 }))`
-  display: block;
   height: 15px;
   width: 15px;
   border-radius: 100em;
-  border: none;
 
   cursor: pointer;
   position: relative;
