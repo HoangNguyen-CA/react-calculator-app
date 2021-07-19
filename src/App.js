@@ -1,5 +1,14 @@
+import { ThemeProvider } from 'styled-components';
+import { theme1 } from './themes';
+
+import Calculator from './calculator/Calculator';
+
 function App() {
-  return <div className='App'></div>;
+  return (
+    <ThemeProvider theme={theme1}>
+      <Calculator />
+    </ThemeProvider>
+  );
 }
 
 export default App;
