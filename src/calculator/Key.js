@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const primaryStyles = css`
-  color: ${({ theme }) => theme.clr.primary};
+  color: ${({ theme }) => theme.clr.keys};
   font-weight: 700;
   font-size: 1.7rem;
   background-color: ${({ theme }) => theme.key.primary.background};

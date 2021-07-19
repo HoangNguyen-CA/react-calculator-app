@@ -1,8 +1,8 @@
-import { ThemeProvider } from 'styled-components';
-import { theme1 } from './themes';
+import React, { useContext } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { themeContext } from './context/themeContext';
 
 import Calculator from './calculator/Calculator';
-import styled from 'styled-components';
 
 const Body = styled.div`
   min-height: 100vh;
@@ -20,8 +20,9 @@ const Body = styled.div`
 `;
 
 function App() {
+  const { theme } = useContext(themeContext);
   return (
-    <ThemeProvider theme={theme1}>
+    <ThemeProvider theme={theme}>
       <Body>
         <Calculator />
       </Body>

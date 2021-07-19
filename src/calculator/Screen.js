@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: 1em;
   margin-bottom: 1.3em;
   border-radius: ${({ theme }) => theme.radius.normal};
-  color: ${({ theme }) => theme.clr.neutral};
+  color: ${({ theme }) => theme.clr.primary};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@ const MainDisplay = styled.p`
 `;
 
 const SecondDisplay = styled.p`
-  filter: brightness(70%);
+  opacity: 0.7;
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 1em;
