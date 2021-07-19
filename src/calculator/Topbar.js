@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { themeContext } from '../context/themeContext';
 
@@ -70,22 +70,27 @@ const ToggleButton = styled.button.attrs((props) => ({
 `;
 
 const Topbar = () => {
-  const { setTheme1, setTheme2, setTheme3 } = useContext(themeContext);
-  const [active, setActive] = useState(1);
+  const { setTheme1, setTheme2, setTheme3, themeNumber, setThemeNumber } =
+    useContext(themeContext);
 
   const handleTheme1 = (e) => {
+    localStorage.setItem('theme', 1);
+
     setTheme1();
-    console.log(e.target);
-    setActive(1);
+    setThemeNumber(1);
   };
 
   const handleTheme2 = (e) => {
+    localStorage.setItem('theme', 2);
+
     setTheme2();
-    setActive(2);
+    setThemeNumber(2);
   };
   const handleTheme3 = (e) => {
+    localStorage.setItem('theme', 3);
+
     setTheme3();
-    setActive(3);
+    setThemeNumber(3);
   };
   return (
     <Container>
@@ -95,17 +100,17 @@ const Topbar = () => {
         <Toggle>
           <ToggleButton
             n='1'
-            active={active === 1}
+            active={themeNumber === 1}
             onClick={handleTheme1}
           ></ToggleButton>
           <ToggleButton
             n='2'
-            active={active === 2}
+            active={themeNumber === 2}
             onClick={handleTheme2}
           ></ToggleButton>
           <ToggleButton
             n='3'
-            active={active === 3}
+            active={themeNumber === 3}
             onClick={handleTheme3}
           ></ToggleButton>
         </Toggle>
