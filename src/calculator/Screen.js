@@ -17,10 +17,14 @@ const Container = styled.div`
 `;
 
 const MainDisplay = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
   font-weight: 700;
-  font-size: 3rem;
-  width: 100%;
-  text-align: right;
+  font-size: 2.5rem;
+
+  overflow: auto;
 
   @media ${({ theme }) => theme.breakpoints.mobile} {
     font-size: 2rem;
@@ -28,19 +32,29 @@ const MainDisplay = styled.p`
 `;
 
 const SecondDisplay = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
   opacity: 0.7;
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 1em;
-  width: 100%;
-  text-align: right;
+
+  overflow: auto;
 `;
 
-const Screen = ({ children }) => {
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+const Screen = ({ operand1, operand2, operator }) => {
   return (
     <Container>
-      <SecondDisplay>{Number(children).toLocaleString()} x</SecondDisplay>
-      <MainDisplay>{Number(children).toLocaleString()}</MainDisplay>
+      <SecondDisplay>
+        {numberWithCommas(operand2)} {operator}
+      </SecondDisplay>
+      <MainDisplay>{numberWithCommas(operand1)}</MainDisplay>
     </Container>
   );
 };

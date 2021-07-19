@@ -2,6 +2,8 @@ import React from 'react';
 import Key from './Key';
 import styled from 'styled-components';
 
+import { operators } from './enums';
+
 const Container = styled.div`
   background-color: ${({ theme }) => theme.bg.keypad};
   display: grid;
@@ -18,29 +20,37 @@ const Container = styled.div`
   }
 `;
 
-const Keypad = () => {
+const Keypad = ({
+  addToOperand,
+  addOperator,
+  reset,
+  calculate,
+  deleteFromOperand,
+}) => {
   return (
     <Container>
-      <Key>7</Key>
-      <Key>8</Key>
-      <Key>9</Key>
-      <Key keyType='secondary'>DEL</Key>
-      <Key>4</Key>
-      <Key>5</Key>
-      <Key>6</Key>
-      <Key>+</Key>
-      <Key>1</Key>
-      <Key>2</Key>
-      <Key>3</Key>
-      <Key>-</Key>
-      <Key>.</Key>
-      <Key>0</Key>
-      <Key>/</Key>
-      <Key>x</Key>
-      <Key span='2' keyType='secondary'>
+      <Key onClick={() => addToOperand(7)}>7</Key>
+      <Key onClick={() => addToOperand(8)}>8</Key>
+      <Key onClick={() => addToOperand(9)}>9</Key>
+      <Key keyType='secondary' onClick={deleteFromOperand}>
+        DEL
+      </Key>
+      <Key onClick={() => addToOperand(4)}>4</Key>
+      <Key onClick={() => addToOperand(5)}>5</Key>
+      <Key onClick={() => addToOperand(6)}>6</Key>
+      <Key onClick={() => addOperator(operators.add)}>+</Key>
+      <Key onClick={() => addToOperand(1)}>1</Key>
+      <Key onClick={() => addToOperand(2)}>2</Key>
+      <Key onClick={() => addToOperand(3)}>3</Key>
+      <Key onClick={() => addOperator(operators.subtract)}>-</Key>
+      <Key onClick={() => addToOperand('.')}>.</Key>
+      <Key onClick={() => addToOperand(0)}>0</Key>
+      <Key onClick={() => addOperator(operators.divide)}>/</Key>
+      <Key onClick={() => addOperator(operators.multiply)}>x</Key>
+      <Key span='2' keyType='secondary' onClick={reset}>
         RESET
       </Key>
-      <Key span='2' keyType='accent'>
+      <Key span='2' keyType='accent' onClick={calculate}>
         =
       </Key>
     </Container>
