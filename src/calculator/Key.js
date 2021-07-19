@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const primaryStyles = css`
   color: ${({ theme }) => theme.clr.primary};
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.7rem;
   background-color: ${({ theme }) => theme.key.primary.background};
   box-shadow: 0px 4px ${({ theme }) => theme.key.primary.shadow};
 `;
@@ -34,7 +34,7 @@ const Key = styled.button.attrs((props) => ({
   cursor: pointer;
   grid-column-start: span ${(props) => props.span};
   border-radius: ${({ theme }) => theme.radius.normal};
-  padding: 0.2em;
+  padding: 0.4em;
   font-family: Spartan, sans-serif;
   ${({ keyType }) => (keyType === 'primary' ? primaryStyles : '')}
   ${({ keyType }) => (keyType === 'secondary' ? secondaryStyles : '')}

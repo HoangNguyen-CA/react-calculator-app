@@ -26,6 +26,10 @@ const theme1 = {
     accent: 'hsl(0, 0%, 100%)',
   },
 
+  breakpoints: {
+    mobile: '(max-width: 570px)',
+  },
+
   radius: {
     normal: '10px',
   },

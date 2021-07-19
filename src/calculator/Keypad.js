@@ -1,5 +1,5 @@
 import React from 'react';
-import Key from '../components/Key';
+import Key from './Key';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -7,10 +7,15 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 2em;
-  padding: 2em;
-  max-width: 500px;
+  gap: 1.5em;
+  padding: 1.5em;
+  width: 100%;
   border-radius: ${({ theme }) => theme.radius.normal};
+
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    gap: 1em;
+    padding: 1em;
+  }
 `;
 
 const Keypad = () => {
