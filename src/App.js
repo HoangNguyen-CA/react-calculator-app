@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { themeContext } from './context/themeContext';
 
@@ -20,23 +20,8 @@ const Body = styled.div`
 `;
 
 function App() {
-  const { theme, setTheme1, setTheme2, setTheme3, setThemeNumber } =
-    useContext(themeContext);
-  useEffect(() => {
-    const savedTheme = parseInt(localStorage.getItem('theme'));
-    if (savedTheme === 1) {
-      setTheme1();
-      setThemeNumber(1);
-    }
-    if (savedTheme === 2) {
-      setTheme2();
-      setThemeNumber(2);
-    }
-    if (savedTheme === 3) {
-      setTheme3();
-      setThemeNumber(3);
-    }
-  }, [setTheme1, setTheme2, setTheme3, setThemeNumber]);
+  const { theme } = useContext(themeContext);
+
   return (
     <ThemeProvider theme={theme}>
       <Body>

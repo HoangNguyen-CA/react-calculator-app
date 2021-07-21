@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 import { theme1, theme2, theme3 } from '../themes';
 
@@ -17,6 +17,23 @@ export const ThemeContextProvider = ({ children }) => {
   const setTheme3 = () => {
     setTheme(theme3);
   };
+
+  useLayoutEffect(() => {
+    const savedTheme = parseInt(localStorage.getItem('theme'));
+    if (savedTheme === 1) {
+      setTheme1();
+      setThemeNumber(1);
+    }
+    if (savedTheme === 2) {
+      setTheme2();
+      setThemeNumber(2);
+    }
+    if (savedTheme === 3) {
+      setTheme3();
+      setThemeNumber(3);
+    }
+  }, []);
+
   return (
     <themeContext.Provider
       value={{
