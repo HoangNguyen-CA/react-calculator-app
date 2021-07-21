@@ -24,8 +24,8 @@ const Keypad = ({
   addToOperand,
   addOperator,
   reset,
-  calculate,
   deleteFromOperand,
+  equals,
 }) => {
   return (
     <Container>
@@ -50,7 +50,7 @@ const Keypad = ({
       <Key $span='2' $keyType='secondary' onClick={reset}>
         RESET
       </Key>
-      <Key $span='2' $keyType='accent' onClick={calculate}>
+      <Key $span='2' $keyType='accent' onClick={equals}>
         =
       </Key>
     </Container>

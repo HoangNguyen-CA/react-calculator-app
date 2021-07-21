@@ -8,40 +8,45 @@ import styled from 'styled-components';
 import { operators } from './enums';
 
 const Container = styled.div`
-  max-width: 500px;
+  max-width: 520px;
   width: 100%;
   background-color: ${({ theme }) => theme.bg.main};
 `;
 
 const Calculator = () => {
   const [operator, setOperator] = useState('');
-  const [operands, setOperands] = useState({ 1: '', 2: '' });
+  const [operand1, setOperand1] = useState('');
+  const [operand2, setOperand2] = useState('');
+
   const [error, setError] = useState(false);
 
   const addToOperand = (c) => {
     if (error) return;
-    let newOperand = operands[1] + c;
-    setOperands({ ...operands, 1: newOperand });
+
+    let newOperand = operand1 + c;
+    setOperand1(newOperand);
   };
 
   const deleteFromOperand = () => {
     if (error) return;
-    if (operands[1].length >= 1) {
-      let newOperand = operands[1].substring(0, operands[1].length - 1);
-      setOperands({ ...operands, 1: newOperand });
+    if (operand1.length >= 1) {
+      let newOperand = operand1.substring(0, operand1.length - 1);
+      setOperand1(newOperand);
     }
   };
 
   const reset = () => {
     setError(false);
-    setOperands({ 1: '', 2: '' });
     setOperator('');
+    setOperand1('');
+    setOperand2('');
   };
 
   const handleError = (message = 'Syntax Error') => {
     reset();
     setError(true);
-    setOperands({ 2: '', 1: message });
+    setOperand2('');
+    setOperand1(message);
   };
 
   const addOperator = (c) => {
@@ -55,41 +60,41 @@ const Calculator = () => {
     }
     if (!check) return;
 
-    if (operands[2] === '') {
+    if (operand2 === '') {
       setOperator(c);
-
-      setOperands((prevState) => {
-        return {
-          2: prevState[1],
-          1: '',
-        };
-      });
+      setOperand2(operand1);
+      setOperand1('');
     } else {
-      if (!operands[1]) {
+      if (!operand1) {
         setOperator(c);
       } else {
-        calculate();
-        setOperands((prevState) => {
-          return {
-            2: prevState[1],
-            1: '',
-          };
-        });
-
-        setOperator(c);
+        const result = calculate();
+        if (result !== null) {
+          setOperator(c);
+          setOperand2(result);
+          setOperand1('');
+        }
       }
     }
   };
 
-  const calculate = () => {
-    if (error) return;
+  const equals = () => {
+    const res = calculate();
+    if (res !== undefined) {
+      reset();
+      setOperand1(String(res));
+    }
+  };
 
-    if (!operator || !operands[1] || !operands[2]) {
+  const calculate = () => {
+    if (error) return undefined;
+
+    if (!operator || !operand1 || !operand2) {
       return handleError();
     }
 
-    const op1 = parseFloat(operands[1]);
-    const op2 = parseFloat(operands[2]);
+    const op1 = parseFloat(operand1);
+    const op2 = parseFloat(operand2);
 
     if (Number.isNaN(op1) || Number.isNaN(op2)) {
       return handleError();
@@ -119,16 +124,15 @@ const Calculator = () => {
         return;
     }
 
-    reset();
-    setOperands({ 2: '', 1: result });
+    return result;
   };
 
   return (
     <Container>
       <Topbar></Topbar>
       <Screen
-        operand1={operands[1]}
-        operand2={operands[2]}
+        operand1={operand1}
+        operand2={operand2}
         operator={operator}
       ></Screen>
       <Keypad
@@ -136,7 +140,7 @@ const Calculator = () => {
         deleteFromOperand={deleteFromOperand}
         addOperator={addOperator}
         reset={reset}
-        calculate={calculate}
+        equals={equals}
       ></Keypad>
     </Container>
   );

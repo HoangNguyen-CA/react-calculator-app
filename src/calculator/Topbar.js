@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Logo = styled.h1`
-  font-size: 1.7rem;
+  font-size: 1.9rem;
 `;
 
 const ToggleContainer = styled.div`
