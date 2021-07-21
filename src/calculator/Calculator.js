@@ -51,6 +51,7 @@ const Calculator = () => {
 
   const addOperator = (c) => {
     if (error) return;
+    if (!operand1) return;
 
     let check = false;
     for (const op in operators) {
@@ -65,15 +66,11 @@ const Calculator = () => {
       setOperand2(operand1);
       setOperand1('');
     } else {
-      if (!operand1) {
+      const result = calculate();
+      if (result !== null) {
         setOperator(c);
-      } else {
-        const result = calculate();
-        if (result !== null) {
-          setOperator(c);
-          setOperand2(result);
-          setOperand1('');
-        }
+        setOperand2(result);
+        setOperand1('');
       }
     }
   };
@@ -89,8 +86,11 @@ const Calculator = () => {
   const calculate = () => {
     if (error) return undefined;
 
-    if (!operator || !operand1 || !operand2) {
+    if (!operand1) {
       return handleError();
+    }
+    if (!operator || !operand2) {
+      return operand1;
     }
 
     const op1 = parseFloat(operand1);
