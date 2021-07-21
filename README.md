@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/calculator-app-built-using-react-styled-components-bFRoZIv4B)
-- Live Site URL: [Add live site URL here](https://hoangnguyen-react-calculator.netlify.app/)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/calculator-app-built-using-react-styled-components-bFRoZIv4B)
+- Live Site URL: [Live Site](https://hoangnguyen-react-calculator.netlify.app/)
 
 ## My process
 
