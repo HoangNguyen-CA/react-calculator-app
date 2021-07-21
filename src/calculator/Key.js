@@ -34,9 +34,17 @@ const Key = styled.button.attrs((props) => ({
   border-radius: ${({ theme }) => theme.radius.normal};
   padding: 0.3em 0.4em;
   font-family: Spartan, sans-serif;
+
   ${({ $keyType }) => ($keyType === 'primary' ? primaryStyles : '')}
   ${({ $keyType }) => ($keyType === 'secondary' ? secondaryStyles : '')}
       ${({ $keyType }) => ($keyType === 'accent' ? accentStyles : '')};
+
+  transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
 `;
 
 Key.defaultProps = {
